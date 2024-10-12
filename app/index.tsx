@@ -1,12 +1,23 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, Image, SafeAreaView } from 'react-native'
+import React, { useEffect } from 'react'
+import { splashStyles } from '@/styles/splashStyles'
+import { resetAndNavigate } from '@/utils/LibraryHelpers'
 
-const Page = () => {
+const Main = () => {
+
+  console.log('inside root Main')
+
+  useEffect(() => {
+    setTimeout(() => {
+      resetAndNavigate('/(auth)/signin')
+    },300)
+  },[])
+
   return (
-    <View>
-      <Text>Page</Text>
+    <View style={splashStyles.container} >
+      <Image style={splashStyles.logo} source={require('@/assets/images/adaptive-icon.png')}  />
     </View>
   )
 }
 
-export default Page
+export default Main
