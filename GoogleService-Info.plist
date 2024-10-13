@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>618767418010-1kgchjbbdl40ubed4uck7voqeof7hekj.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.618767418010-1kgchjbbdl40ubed4uck7voqeof7hekj</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>618767418010-ctu575dkpi2s2k10b4cao861cgu0lb6q.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBdS4gWUu0-ohD8rReiu-EVBwpffazDMMI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>618767418010</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.nmn.chattingapp</string>
+	<key>PROJECT_ID</key>
+	<string>chatting-app-6ad3f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>chatting-app-6ad3f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:618767418010:ios:68aacb2e75e666084e9523</string>
+</dict>
+</plist>
