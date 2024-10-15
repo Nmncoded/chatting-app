@@ -5,6 +5,9 @@ import { BASE_URL } from '../config';
 import { tokenStorage } from '../storage';
 import { useAuthStore } from '../authStore';
 import { Alert } from 'react-native';
+import { appAxios } from './apiInterceptors';
+import { useChatStore } from '../chatStore';
+import { useUserStore } from '../userStore';
 
 
 
@@ -93,6 +96,35 @@ export const checkUsername = async(username: string) => {
   } catch (error) {
     console.log("checkUsername ERROR",error)
     return false;
+  }
+}
+
+export const registerDeviceToken = async(device_token: string) => {
+  const {deviceTokenAdded, setDeviceTokenStatus} = useAuthStore.getState();
+  if(deviceTokenAdded) return;
+  try {
+    const apiRes = await appAxios.post('/device-token/register',{device_token});
+    setDeviceTokenStatus(true);
+  } catch (error) {
+    setDeviceTokenStatus(false);
+    console.log("registerDeviceToken ERROR",error)
+  }
+}
+
+export const logoutFromApp = async(device_token:string) => {
+  try {
+    const apiRes = await appAxios.post('/device-token/remove',{device_token});
+    const {logout} = useAuthStore.getState();
+    const {clearAllChats} = useChatStore.getState();
+    const {clearUserStore} = useUserStore.getState();
+    logout();
+    clearAllChats();
+    clearUserStore();
+    tokenStorage.clearAll();
+    console.log('logoutFromApp success ',apiRes);
+    resetAndNavigate('/(auth)/signin');
+  } catch (error) {
+    console.log('logoutFromApp ',error)
   }
 }
 

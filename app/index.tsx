@@ -45,8 +45,7 @@ const Main = () => {
       resetAndNavigate("/(home)/home");
       return true;
     }
-    // resetAndNavigate("/(auth)/signin");
-    resetAndNavigate("/(auth)/signup");
+    resetAndNavigate("/(auth)/signin");
     return false;
   };
 
