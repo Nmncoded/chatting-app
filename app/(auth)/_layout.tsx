@@ -8,12 +8,10 @@ const RootLayout = () => {
 
   console.log('inside auth layout')
   return (
-    // <View>
       <Stack screenOptions={{headerShown: false}} >
         <Stack.Screen name='signup'  />
         <Stack.Screen name='signin'  />
       </Stack>
-    // </View>
   )
 }
 
