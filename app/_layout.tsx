@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import React, { useEffect } from 'react'
 import { useFonts } from 'expo-font'
@@ -28,10 +28,11 @@ const RootLayout = () => {
 
   console.log('inside root layout')
   return (
-    <SafeAreaProvider>
+    <>
       <StatusBar translucent backgroundColor={Colors.tertiary} style='light' />
       <RootNavigation />
-    </SafeAreaProvider>
+    
+    </>
   )
 }
 
