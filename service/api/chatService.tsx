@@ -33,6 +33,7 @@ const updateChatStore = (conversationId: string, newMessages: any[]) => {
         const existingMessageIds = new Set(convo.messages.map((message:any) => message.id));
         const uniqueNewMessages = newMessages.filter((message:any) => !existingMessageIds.has(message.id));
         const allMessages = [...uniqueNewMessages, ...convo.messages];
+        // console.log("usePaginatedChats updateChatStore : ---- ", allMessages);
         const sortedMessages = allMessages.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
         return {...convo, messages: sortedMessages}
@@ -53,6 +54,7 @@ export const usePaginatedChats = (conversationId: string) => {
     if (loading || !hasMoreChats) return;
     setLoading(true);
     const data = await fetchPaginatedChats(conversationId, page);
+    // console.log("usePaginatedChats : ---- ",data.messages,conversationId, page);
     if(data && data?.messages.length>0){
       updateChatStore(conversationId, data.messages);
       setPage(page+1);
@@ -62,6 +64,6 @@ export const usePaginatedChats = (conversationId: string) => {
     setLoading(false);
   }
 
-  return {loadMoreChats, loading, hasMoreChats};
+  return {loadMoreChats, loading, hasMoreChats, setLoading};
   
 }

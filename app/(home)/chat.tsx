@@ -7,9 +7,12 @@ import Chat from "@/components/chat/Chat";
 import SendButton from "@/components/chat/SendButton";
 import { usePaginatedChats } from "@/service/api/chatService";
 import { useChatStore } from "@/service/chatStore";
+import { useConversationsSubscription } from "@/service/sockets/useConversationsSubscription";
 
 const Page = () => {
+  useConversationsSubscription();
   const route = useRoute() as any;
+  const [message, setMessage] = useState('');
   const item = route?.params;
   const {loadMoreChats, loading, hasMoreChats} = usePaginatedChats(item?.conversation_id);
   const [heightOfMessageBox, setHeightOfMessageBox] = useState(0);
@@ -17,7 +20,6 @@ const Page = () => {
 
   const {conversations} = useChatStore.getState();
   const currentChat = conversations.find(convo => convo.conversationId === item?.conversation_id);
-
 
   useEffect(() => {
     if(!loading && hasMoreChats){
@@ -30,7 +32,7 @@ const Page = () => {
       <ChatHeader item={item} />
       <Image source={require('@/assets/images/pattern.png')} style={chatStyles.background} />
       <Chat heightOfMessageBox={heightOfMessageBox} messages={ currentChat?.messages || []} onLoadMore={() => !loading && hasMoreChats && loadMoreChats()} loading={loading} />
-      <SendButton item={item} isTyping={isTyping} setHeightOfMessageBox={setHeightOfMessageBox} setIsTyping={setIsTyping} />
+      <SendButton message={message}  setMessage={setMessage} item={item} isTyping={isTyping} setHeightOfMessageBox={setHeightOfMessageBox} setIsTyping={setIsTyping} />
     </View>
   );
 };

@@ -12,7 +12,9 @@ interface SendButtonProps {
     isTyping: boolean;
     setIsTyping: (item: any) => void;
     item: any;
-    setHeightOfMessageBox: (item: any) => void
+    setHeightOfMessageBox: (item: any) => void,
+    message: string;
+    setMessage: (item: any) => void;
 }
 
 const windowHeight = Dimensions.get('window').height;
@@ -22,11 +24,12 @@ const SendButton: FC<SendButtonProps> = ({
     setIsTyping,
     item,
     setHeightOfMessageBox,
+    message,
+    setMessage,
 }) => {
     const socketService = useWS()
     const animationValue = useRef(new Animated.Value(0)).current;
     const TextInputRef = useRef(null);
-    const [message, setMessage] = useState('');
     const keyboardOffsetHeight = useKeyboardOffsetHeight();
     const handleTextChange = (text: any) => {
         setIsTyping(!!text);
@@ -68,7 +71,7 @@ const SendButton: FC<SendButtonProps> = ({
     const handleSend = async () => {
         socketService.emit('TYPING', { conversationId: item.conversation_id, isTyping: false });
         socketService.emit('SEND_MESSAGE', { conversationId: item.conversation_id, type: "TEXT", content: message })
-        setMessage('')
+        setMessage('');
     }
 
     return (

@@ -20,11 +20,12 @@ export const useConversationsSubscription = () => {
         if(convo.conversationId === conversationId){
           return {
             ...convo,
-            messages: [...convo.messages, message]
+            messages: [message,...convo.messages]
           }
         }
         return convo
       });
+      // console.log('handleNewMessage socket', message, conversationId, updatedConversations[0].messages[updatedConversations[0].messages?.length-1]?.content,  updatedConversations[0].messages[0]?.content,  updatedConversations[0].messages[1]?.content);
       setConversations(updatedConversations);
     }
 
